@@ -1,5 +1,5 @@
-var gridWidth = 480;
-var gridHeight = 480;
+var gridWidth = 600;
+var gridHeight = 600;
 var gridPadding = 10;
 
 var canvas = document.getElementById("gridcanvas");

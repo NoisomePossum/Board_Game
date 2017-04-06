@@ -94,24 +94,14 @@ hr {
   Begin bootstrap mods
 *******************************/
 
-#singlebutton {
-  margin-bottom: 2rem;
-}
-
 .container {
   padding-bottom: 1px;
 }
 
-#typePic > img {
-  margin-bottom: 4rem;
-  border: solid black 1px;
-}
-
-.awesomequote {
-  background: white;
-  border-radius: 5px;
-  margin-bottom: 4rem;
-  box-shadow: 5px 5px 5px #888888;
+#gridcanvas {
+  background: #fff;
+  display: block;
+  margin: auto;
 }
 
 #navbar {
