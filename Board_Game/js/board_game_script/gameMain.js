@@ -10,8 +10,8 @@ var context = canvas.getContext("2d");
 
 drawBoard(gridWidth, gridHeight, gridPadding);
 
-var player1 = new player("#2B26E4");
-var player2 = new player("#269B26");
+var player1 = new Player("#2B26E4");
+var player2 = new Player("#269B26");
 
 // Array of starting positions
 var startPositions = [];
