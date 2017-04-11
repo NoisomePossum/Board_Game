@@ -27,7 +27,6 @@ function Player (style, shape) {
 	this.style = style;
 	this.shape = shape;
 }
-
 Player.prototype = Object.create(GamePiece.prototype);
 Player.prototype.constructor = Player;
 
@@ -37,6 +36,14 @@ function Obstacle () {
 	this.style = "#000000";
 	this.shape = "square";
 }
-
 Obstacle.prototype = Object.create(GamePiece.prototype);
 Obstacle.prototype.constructor = Obstacle;
+
+// Object constructor for weapons
+function Weapon (style) {
+	GamePiece.call(this);
+	this.style = style;
+	this.shape = "square";
+}
+Weapon.prototype = Object.create(GamePiece.prototype);
+Weapon.prototype.constructor = Weapon;
