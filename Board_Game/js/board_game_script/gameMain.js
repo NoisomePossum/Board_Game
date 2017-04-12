@@ -39,4 +39,4 @@ startPositions.push(weapon2);
 startPositions.push(weapon3);
 startPositions.push(weapon4);
 
-setStartPositions();
+setStartPositions(startPositions);
