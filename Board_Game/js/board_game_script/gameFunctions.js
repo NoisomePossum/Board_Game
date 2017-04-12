@@ -41,5 +41,8 @@ function setStartPositions(array) {
 		startY = boardSquares[indexNum]["y"];
 
 		array[i].drawToBoard(startX, startY);
+
+		array[i].currX = startX;
+		array[i].currY = startY;
 	}
 }
