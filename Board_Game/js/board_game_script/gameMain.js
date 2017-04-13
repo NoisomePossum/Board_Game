@@ -3,11 +3,6 @@ var gridWidth = 600;
 var gridHeight = 600;
 var gridPadding = 10;
 
-// Sets the canvas and context elements that we
-// will draw the board and game pieces onto
-var canvas = document.getElementById("gridcanvas");
-var context = canvas.getContext("2d");
-
 drawBoard(gridWidth, gridHeight, gridPadding);
 
 // Creates instances of all the pieces needed for the game
@@ -25,18 +20,21 @@ var weapon2 = new Weapon("#78FF6A");
 var weapon3 = new Weapon("#FFEC18");
 var weapon4 = new Weapon("#76FFE4");
 
-// Creates an array of starting positions
-var startPositions = [];
-startPositions.push(player1);
-startPositions.push(player2);
-startPositions.push(obstacle1);
-startPositions.push(obstacle2);
-startPositions.push(obstacle3);
-startPositions.push(obstacle4);
-startPositions.push(obstacle5);
-startPositions.push(weapon1);
-startPositions.push(weapon2);
-startPositions.push(weapon3);
-startPositions.push(weapon4);
+// Creates arrays for each object type
+var players = [];
+players.push(player1);
+players.push(player2);
 
-setStartPositions(startPositions);
+var gameObstacles = [];
+gameObstacles.push(obstacle1);
+gameObstacles.push(obstacle2);
+gameObstacles.push(obstacle3);
+gameObstacles.push(obstacle4);
+gameObstacles.push(obstacle5);
+gameObstacles.push(weapon1);
+gameObstacles.push(weapon2);
+gameObstacles.push(weapon3);
+gameObstacles.push(weapon4);
+
+setStartPositions(players);
+setStartPositions(gameObstacles);

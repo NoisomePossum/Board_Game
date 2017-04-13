@@ -10,6 +10,10 @@ function isInArray(value, array) {
 
 // Draws the board for the game
 function drawBoard (width, height, padding) {
+	// Sets the canvas and context elements that we
+	// will draw the board and game pieces onto
+	var canvas = document.getElementById("gridcanvas");
+	var context = canvas.getContext("2d");
 	for (var i = 0; i <= width; i += 60) {
 		context.moveTo(0.5 + i + padding, padding);
 		context.lineTo(0.5 + i + padding, height + padding);
@@ -26,8 +30,6 @@ function drawBoard (width, height, padding) {
 
 // Draws all of the starting objects for the game
 function setStartPositions(array) {
-	var startX = "";
-	var startY = "";
 	var startingIndexes = [];
 
 	for (var i = 0; i < array.length; i++) {
@@ -36,13 +38,9 @@ function setStartPositions(array) {
 			indexNum = getRandomInt(1, 100);
 		}
 		startingIndexes.push(indexNum);
-		alert(startingIndexes[i]);
-		startX = boardSquares[indexNum]["x"];
-		startY = boardSquares[indexNum]["y"];
+		array[i].x = boardSquares[indexNum]["x"];
+		array[i].y = boardSquares[indexNum]["y"];
 
-		array[i].drawToBoard(startX, startY);
-
-		array[i].currX = startX;
-		array[i].currY = startY;
+		array[i].drawToBoard();
 	}
 }
