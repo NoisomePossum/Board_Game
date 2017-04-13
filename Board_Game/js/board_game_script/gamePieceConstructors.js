@@ -1,19 +1,21 @@
 // constructor for generic game piece class
 // to be inherited by other specific game piece classes
 // gives each class the draw to board function
-function GamePiece(style, shape) {
-	this.style = style;
-	this.shape = shape;
+function GamePiece() {
 }
 
-GamePiece.prototype.drawToBoard = function (x, y, shape) {
+GamePiece.prototype.drawToBoard = function () {
+	// Sets the canvas and context elements that we
+	// will draw the board and game pieces onto
+	var canvas = this.canvas;
+	var context = canvas.getContext("2d");
 	context.beginPath();
 
 	if (this.shape == "circle") {
-		context.arc(x + 20, y + 20, 20, 0, 2 * Math.PI, false);
+		context.arc(this.x + 20, this.y + 20, 20, 0, 2 * Math.PI, false);
 	}
 	if (this.shape == "square") {
-		context.rect(x, y, 40, 40);
+		context.rect(this.x, this.y, 40, 40);
 	}
 	
 	context.closePath();
@@ -26,6 +28,7 @@ function Player (style, shape) {
 	GamePiece.call(this);
 	this.style = style;
 	this.shape = shape;
+	this.canvas = document.getElementById("playercanvas");
 }
 Player.prototype = Object.create(GamePiece.prototype);
 Player.prototype.constructor = Player;
@@ -35,6 +38,7 @@ function Obstacle () {
 	GamePiece.call(this);
 	this.style = "#000000";
 	this.shape = "square";
+	this.canvas = document.getElementById("nonplayerobjects");
 }
 Obstacle.prototype = Object.create(GamePiece.prototype);
 Obstacle.prototype.constructor = Obstacle;
@@ -44,6 +48,7 @@ function Weapon (style) {
 	GamePiece.call(this);
 	this.style = style;
 	this.shape = "square";
+	this.canvas = document.getElementById("nonplayerobjects");
 }
 Weapon.prototype = Object.create(GamePiece.prototype);
 Weapon.prototype.constructor = Weapon;

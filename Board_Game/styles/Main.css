@@ -98,6 +98,22 @@ hr {
   padding-bottom: 1px;
 }
 
+#BoardGameApp {
+  position: relative;
+  display: block;
+  margin: auto;
+  margin-bottom: 4rem;
+  height: 620px;
+}
+
+#BoardGameApp > canvas {
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
 #gridcanvas {
   background: #fff;
   display: block;
