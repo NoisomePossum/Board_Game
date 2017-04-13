@@ -29,9 +29,9 @@ function drawBoard (width, height, padding) {
 }
 
 // Draws all of the starting objects for the game
+var startingIndexes = [];
 function setStartPositions(array) {
-	var startingIndexes = [];
-
+	
 	for (var i = 0; i < array.length; i++) {
 		var indexNum = getRandomInt(1, 100);
 		while(isInArray(indexNum, startingIndexes)) {
