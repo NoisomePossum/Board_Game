@@ -9,6 +9,12 @@ GamePiece.prototype.drawToBoard = function () {
 	// will draw the board and game pieces onto
 	var canvas = this.canvas;
 	var context = canvas.getContext("2d");
+
+	if (this.dirty) {
+		context.clearRect(dirtyRectangle.x, dirtyRectangle.y, dirtyRectangle.width, dirtyRectangle.height);
+		this.dirty = false;
+	}
+
 	context.beginPath();
 
 	if (this.shape == "circle") {
@@ -32,6 +38,30 @@ function Player (style, shape) {
 }
 Player.prototype = Object.create(GamePiece.prototype);
 Player.prototype.constructor = Player;
+
+var dirtyRectangle = {
+	x: "",
+	y: "",
+	width: "",
+	height: ""
+};
+Player.prototype.move = function () {
+	var originalX = this.x;
+	var originalY = this.y;
+
+ 	 this.x -= 60;
+	  if (originalX != this.x || originalY != this.y) {
+	  	this.dirty = true;
+	  	dirtyRectangle.x = originalX;
+	  	dirtyRectangle.y = originalY;
+	  	dirtyRectangle.width = 40;
+	  	dirtyRectangle.height = 40;
+	   }
+
+	   if (this.dirty) {
+	   	this.drawToBoard();
+	   }
+}
 
 // Object constructor for obstacles
 function Obstacle () {
