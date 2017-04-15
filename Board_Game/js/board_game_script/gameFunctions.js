@@ -44,3 +44,32 @@ function setStartPositions(array) {
 		array[i].drawToBoard();
 	}
 }
+
+var currentTurn = 0;
+
+function playerTurn () {
+
+	document.addEventListener("keypress", function(event) {
+	 	if (event.code == "KeyW" || event.code == "ArrowUp"){
+		 	players[currentTurn].move("up");
+		 	
+		 }
+		 if (event.code == "KeyA" || event.code == "ArrowLeft"){
+		 	players[currentTurn].move("left");
+		 }
+		 if (event.code == "KeyS" || event.code == "ArrowDown"){
+		 	players[currentTurn].move("down");
+		 }
+		 if (event.code == "KeyD" || event.code == "ArrowRight"){
+		 	players[currentTurn].move("right");
+		 }
+		 if (event.code == "Enter") {
+		 	currentTurn++;
+		 	if (currentTurn >= players.length) {
+		 		currentTurn = 0;
+		 	}
+		 }
+	 });
+
+
+}

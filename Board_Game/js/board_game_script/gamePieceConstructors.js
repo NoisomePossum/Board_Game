@@ -45,11 +45,22 @@ var dirtyRectangle = {
 	width: "",
 	height: ""
 };
-Player.prototype.move = function () {
+Player.prototype.move = function (direction) {
 	var originalX = this.x;
 	var originalY = this.y;
 
- 	 this.x -= 60;
+	if (direction == "up") {
+		this.y -= 60;
+	}
+	if (direction == "left") {
+		this.x -= 60;
+	}
+	if (direction == "right") {
+		this.x += 60;
+	}
+	if (direction == "down") {
+		this.y += 60;
+	}
 	  if (originalX != this.x || originalY != this.y) {
 	  	this.dirty = true;
 	  	dirtyRectangle.x = originalX;

@@ -39,7 +39,4 @@ gameObstacles.push(weapon4);
 setStartPositions(players);
 setStartPositions(gameObstacles);
 
-document.addEventListener("keypress", function(e) {
- 	var keyCode = e;
- 	player1.move();
- });
+playerTurn();
