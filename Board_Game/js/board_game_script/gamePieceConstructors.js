@@ -49,7 +49,7 @@ Player.prototype.move = function (direction) {
 	var originalX = this.x;
 	var originalY = this.y;
 
-	if (direction == "up") {
+	if (direction == "up" && isLegalSquare(originalX, originalY, this)) {
 		this.y -= 60;
 	}
 	if (direction == "left") {

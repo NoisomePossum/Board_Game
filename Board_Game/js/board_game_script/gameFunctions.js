@@ -45,6 +45,24 @@ function setStartPositions(array) {
 	}
 }
 
+function isLegalSquare (originalX, originalY, player) {
+	if (player.x > (originalX + 180)) {
+		return false;
+	}
+	if (player.x < (originalX - 180)) {
+		return false;
+	}
+	if (player.y > (originalY + 180)) {
+		return false;
+	}
+	if (player.y < (originalY - 180)) {
+		return false;
+	}
+	else {
+		return true;
+	}
+}
+
 var currentTurn = 0;
 
 function playerTurn () {
@@ -70,6 +88,4 @@ function playerTurn () {
 		 	}
 		 }
 	 });
-
-
 }
