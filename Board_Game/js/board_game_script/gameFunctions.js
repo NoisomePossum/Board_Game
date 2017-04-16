@@ -40,22 +40,24 @@ function setStartPositions(array) {
 		startingIndexes.push(indexNum);
 		array[i].x = boardSquares[indexNum]["x"];
 		array[i].y = boardSquares[indexNum]["y"];
+		array[i].originalX = boardSquares[indexNum]["x"];
+		array[i].originalY = boardSquares[indexNum]["y"];
 
 		array[i].drawToBoard();
 	}
 }
 
 function isLegalSquare (originalX, originalY, player) {
-	if (player.x > (originalX + 180)) {
+	if (player.x >= (originalX + 180)) {
 		return false;
 	}
-	if (player.x < (originalX - 180)) {
+	if (player.x <= (originalX - 180)) {
 		return false;
 	}
-	if (player.y > (originalY + 180)) {
+	if (player.y >= (originalY + 180)) {
 		return false;
 	}
-	if (player.y < (originalY - 180)) {
+	if (player.y <= (originalY - 180)) {
 		return false;
 	}
 	else {
@@ -82,6 +84,8 @@ function playerTurn () {
 		 	players[currentTurn].move("right");
 		 }
 		 if (event.code == "Enter") {
+		 	players[currentTurn].originalX = players[currentTurn].x;
+		 	players[currentTurn].originalY = players[currentTurn].y;
 		 	currentTurn++;
 		 	if (currentTurn >= players.length) {
 		 		currentTurn = 0;

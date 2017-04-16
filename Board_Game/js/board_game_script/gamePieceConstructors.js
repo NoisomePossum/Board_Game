@@ -46,25 +46,26 @@ var dirtyRectangle = {
 	height: ""
 };
 Player.prototype.move = function (direction) {
-	var originalX = this.x;
-	var originalY = this.y;
 
-	if (direction == "up" && isLegalSquare(originalX, originalY, this)) {
+	var dirtyX = this.x;
+	var dirtyY = this.y;
+
+	if (direction == "up" && isLegalSquare(this.originalX, this.originalY, this)) {
 		this.y -= 60;
 	}
-	if (direction == "left") {
+	if (direction == "left" && isLegalSquare(this.originalX, this.originalY, this)) {
 		this.x -= 60;
 	}
-	if (direction == "right") {
+	if (direction == "right" && isLegalSquare(this.originalX, this.originalY, this)) {
 		this.x += 60;
 	}
-	if (direction == "down") {
+	if (direction == "down" && isLegalSquare(this.originalX, this.originalY, this)) {
 		this.y += 60;
 	}
-	  if (originalX != this.x || originalY != this.y) {
+	  if (this.originalX != this.x || this.originalY != this.y) {
 	  	this.dirty = true;
-	  	dirtyRectangle.x = originalX;
-	  	dirtyRectangle.y = originalY;
+	  	dirtyRectangle.x = dirtyX;
+	  	dirtyRectangle.y = dirtyY;
 	  	dirtyRectangle.width = 40;
 	  	dirtyRectangle.height = 40;
 	   }
