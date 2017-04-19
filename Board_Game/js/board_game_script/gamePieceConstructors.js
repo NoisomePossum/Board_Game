@@ -45,27 +45,45 @@ var dirtyRectangle = {
 	width: "",
 	height: ""
 };
+
 Player.prototype.move = function (direction) {
+	var lastX = this.x;
+	var lastY = this.y;
 
-	var dirtyX = this.x;
-	var dirtyY = this.y;
+	var legalSquares = getLegalSquares(this.originalX, this.originalY);
 
-	if (direction == "up" && isLegalSquare(this.originalX, this.originalY, this)) {
-		this.y -= 60;
+	if (direction == "up") {
+		var newCoord = this.y - 60;
+		var nextSquareLegal = checkSquare(this, this.x, newCoord, legalSquares);
+		if (nextSquareLegal) {
+			this.y  = newCoord;
+		}
 	}
-	if (direction == "left" && isLegalSquare(this.originalX, this.originalY, this)) {
-		this.x -= 60;
+	if (direction == "left") {
+		var newCoord = this.x - 60;
+		var nextSquareLegal = checkSquare(this, newCoord, this.y, legalSquares);
+		if (nextSquareLegal) {
+			this.x  = newCoord;
+		}
 	}
-	if (direction == "right" && isLegalSquare(this.originalX, this.originalY, this)) {
-		this.x += 60;
+	if (direction == "right") {
+		var newCoord = this.x + 60;
+		var nextSquareLegal = checkSquare(this, newCoord, this.y, legalSquares);
+		if (nextSquareLegal) {
+			this.x  = newCoord;
+		}
 	}
-	if (direction == "down" && isLegalSquare(this.originalX, this.originalY, this)) {
-		this.y += 60;
+	if (direction == "down") {
+		var newCoord = this.y + 60;
+		var nextSquareLegal = checkSquare(this, this.x, newCoord, legalSquares);
+		if (nextSquareLegal) {
+			this.y  = newCoord;
+		}
 	}
-	  if (this.originalX != this.x || this.originalY != this.y) {
+	  if (lastX != this.x || lastY != this.y) {
 	  	this.dirty = true;
-	  	dirtyRectangle.x = dirtyX;
-	  	dirtyRectangle.y = dirtyY;
+	  	dirtyRectangle.x = lastX;
+	  	dirtyRectangle.y = lastY;
 	  	dirtyRectangle.width = 40;
 	  	dirtyRectangle.height = 40;
 	   }

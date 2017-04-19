@@ -47,22 +47,37 @@ function setStartPositions(array) {
 	}
 }
 
-function isLegalSquare (originalX, originalY, player) {
-	if (player.x >= (originalX + 180)) {
-		return false;
+function getLegalSquares (x, y) {
+	return [
+		{"x" : x, "y" : y},
+		{"x" : x, "y" : y - 60},
+		{"x" : x, "y" : y - 120},
+		{"x" : x, "y" : y - 180},
+		{"x" : x - 60, "y" : y},
+		{"x" : x - 120, "y" : y},
+		{"x" : x - 180, "y" : y},
+		{"x" : x, "y" : y + 60},
+		{"x" : x, "y" : y + 120},
+		{"x" : x, "y" : y + 180},
+		{"x" : x + 60, "y" : y},
+		{"x" : x + 120, "y" : y},
+		{"x" : x + 180, "y" : y},
+	];
+}
+
+function checkSquare (player, newX, newY, array) {
+
+	var  nextSquare = false;
+
+	for (var i = 0; i < array.length; i++) {
+
+		if (newX == array[i].x && newY == array[i].y) {
+			nextSquare = true;
+		}
 	}
-	if (player.x <= (originalX - 180)) {
-		return false;
-	}
-	if (player.y >= (originalY + 180)) {
-		return false;
-	}
-	if (player.y <= (originalY - 180)) {
-		return false;
-	}
-	else {
-		return true;
-	}
+	
+	return nextSquare;
+
 }
 
 var currentTurn = 0;
