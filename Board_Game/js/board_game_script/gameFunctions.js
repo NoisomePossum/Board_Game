@@ -67,11 +67,28 @@ function getLegalSquares (x, y) {
 
 function checkSquare (player, newX, newY, array) {
 
+	var legalSquares = array;
+
+	for (var i = 0; i < legalSquares.length; i++) {
+		if (legalSquares[i].x > 560) {
+			legalSquares.splice(i, 1);
+		}
+		else if (legalSquares[i].x < 0) {
+			legalSquares.splice(i, 1);
+		}
+		else if (legalSquares[i].y > 560) {
+			legalSquares.splice(i, 1);
+		}
+		else if (legalSquares[i].y < 0) {
+			legalSquares.splice(i, 1);
+		}
+	}
+
 	var  nextSquare = false;
 
-	for (var i = 0; i < array.length; i++) {
+	for (var i = 0; i < legalSquares.length; i++) {
 
-		if (newX == array[i].x && newY == array[i].y) {
+		if (newX == legalSquares[i].x && newY == legalSquares[i].y) {
 			nextSquare = true;
 		}
 	}
