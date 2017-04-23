@@ -31,12 +31,15 @@ gameObstacles.push(obstacle2);
 gameObstacles.push(obstacle3);
 gameObstacles.push(obstacle4);
 gameObstacles.push(obstacle5);
-gameObstacles.push(weapon1);
-gameObstacles.push(weapon2);
-gameObstacles.push(weapon3);
-gameObstacles.push(weapon4);
+
+var weapons = [];
+weapons.push(weapon1);
+weapons.push(weapon2);
+weapons.push(weapon3);
+weapons.push(weapon4);
 
 setStartPositions(players);
 setStartPositions(gameObstacles);
+setStartPositions(weapons);
 
 playerTurn();

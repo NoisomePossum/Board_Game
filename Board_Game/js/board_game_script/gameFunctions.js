@@ -48,7 +48,7 @@ function setStartPositions(array) {
 }
 
 function getLegalSquares (x, y) {
-	return [
+	var temp = [
 		{"x" : x, "y" : y},
 		{"x" : x, "y" : y - 60},
 		{"x" : x, "y" : y - 120},
@@ -63,32 +63,51 @@ function getLegalSquares (x, y) {
 		{"x" : x + 120, "y" : y},
 		{"x" : x + 180, "y" : y},
 	];
+
+	for (var i = 0; i < temp.length; i++) {
+
+		var match = compareXY(temp[i].x, temp[i].y, gameObstacles);
+
+		if (match) {
+			temp.splice(i, 1);
+		}
+		else if (temp[i].x > 560) {
+			temp.splice(i, 1);
+		}
+		else if (temp[i].x < 0) {
+			temp.splice(i, 1);
+		}
+		else if (temp[i].y > 560) {
+			temp.splice(i, 1);
+		}
+		else if (temp[i].y < 0) {
+			temp.splice(i, 1);
+		}
+
+	}
+
+	return temp;
+}
+
+function compareXY (compareX, compareY, array) {
+
+	var check = false;
+	for (var i = 0; i < array.length; i++) {
+		if (compareX == array[i].x && compareY == array[i].y) {
+			check = true;
+		}
+
+	}
+
+	return check;
 }
 
 function checkSquare (player, newX, newY, array) {
 
-	var legalSquares = array;
-
-	for (var i = 0; i < legalSquares.length; i++) {
-		if (legalSquares[i].x > 560) {
-			legalSquares.splice(i, 1);
-		}
-		else if (legalSquares[i].x < 0) {
-			legalSquares.splice(i, 1);
-		}
-		else if (legalSquares[i].y > 560) {
-			legalSquares.splice(i, 1);
-		}
-		else if (legalSquares[i].y < 0) {
-			legalSquares.splice(i, 1);
-		}
-	}
-
 	var  nextSquare = false;
+	for (var i = 0; i < array.length; i++) {
 
-	for (var i = 0; i < legalSquares.length; i++) {
-
-		if (newX == legalSquares[i].x && newY == legalSquares[i].y) {
+		if (newX == array[i].x && newY == array[i].y) {
 			nextSquare = true;
 		}
 	}
@@ -98,7 +117,6 @@ function checkSquare (player, newX, newY, array) {
 }
 
 var currentTurn = 0;
-
 function playerTurn () {
 
 	document.addEventListener("keypress", function(event) {
