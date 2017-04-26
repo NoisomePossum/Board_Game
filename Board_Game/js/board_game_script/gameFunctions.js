@@ -34,6 +34,7 @@ function setStartPositions(array) {
 	
 	for (var i = 0; i < array.length; i++) {
 		var indexNum = getRandomInt(1, 100);
+		// find another index if it already exists
 		while(isInArray(indexNum, startingIndexes)) {
 			indexNum = getRandomInt(1, 100);
 		}
@@ -44,6 +45,29 @@ function setStartPositions(array) {
 		array[i].originalY = boardSquares[indexNum]["y"];
 
 		array[i].drawToBoard();
+	}
+}
+
+function drawLegalMoves (player) {
+
+	var canvas = document.getElementById("playermoves");
+	var context = canvas.getContext("2d");
+
+	context.clearRect(0, 0, 620, 620);
+	context.beginPath();
+
+	
+
+	var legalMoves = getLegalSquares(player.originalX, player.originalY);
+
+	for (var i = 0; i < legalMoves.length; i++) {
+		context.rect(legalMoves[i].x, legalMoves[i].y, 60, 60);
+		context.closePath();
+		context.stroke();
+		context.shadowBlur = 10;
+		context.shadowColor = "blue";
+		// context.fillStyle = "#D61313";
+		// context.fill();
 	}
 }
 
@@ -68,22 +92,9 @@ function getLegalSquares (x, y) {
 
 		var match = compareXY(temp[i].x, temp[i].y, gameObstacles);
 
-		if (match) {
+		if (match || temp[i].x > 560 || temp[i].x < 0 || temp[i].y > 560 || temp[i].y < 0) {
 			temp.splice(i, 1);
 		}
-		else if (temp[i].x > 560) {
-			temp.splice(i, 1);
-		}
-		else if (temp[i].x < 0) {
-			temp.splice(i, 1);
-		}
-		else if (temp[i].y > 560) {
-			temp.splice(i, 1);
-		}
-		else if (temp[i].y < 0) {
-			temp.splice(i, 1);
-		}
-
 	}
 
 	return temp;
@@ -102,7 +113,7 @@ function compareXY (compareX, compareY, array) {
 	return check;
 }
 
-function checkSquare (player, newX, newY, array) {
+function checkSquare (newX, newY, array) {
 
 	var  nextSquare = false;
 	for (var i = 0; i < array.length; i++) {
@@ -118,6 +129,8 @@ function checkSquare (player, newX, newY, array) {
 
 var currentTurn = 0;
 function playerTurn () {
+
+	drawLegalMoves(players[currentTurn]);
 
 	document.addEventListener("keypress", function(event) {
 	 	if (event.code == "KeyW" || event.code == "ArrowUp"){
@@ -140,6 +153,7 @@ function playerTurn () {
 		 	if (currentTurn >= players.length) {
 		 		currentTurn = 0;
 		 	}
+		 	drawLegalMoves(players[currentTurn]);
 		 }
 	 });
 }

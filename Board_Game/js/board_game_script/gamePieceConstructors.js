@@ -18,10 +18,10 @@ GamePiece.prototype.drawToBoard = function () {
 	context.beginPath();
 
 	if (this.shape == "circle") {
-		context.arc(this.x + 20, this.y + 20, 20, 0, 2 * Math.PI, false);
+		context.arc(this.x + 30, this.y + 30, 20, 0, 2 * Math.PI, false);
 	}
 	if (this.shape == "square") {
-		context.rect(this.x, this.y, 40, 40);
+		context.rect(this.x + 10, this.y + 10, 40, 40);
 	}
 	
 	context.closePath();
@@ -54,28 +54,29 @@ Player.prototype.move = function (direction) {
 
 	if (direction == "up") {
 		var newCoord = this.y - 60;
-		var nextSquareLegal = checkSquare(this, this.x, newCoord, legalSquares);
+		var nextSquareLegal = checkSquare(this.x, newCoord, legalSquares);
 		if (nextSquareLegal) {
 			this.y  = newCoord;
 		}
+		console.log("does a thing");
 	}
 	if (direction == "left") {
 		var newCoord = this.x - 60;
-		var nextSquareLegal = checkSquare(this, newCoord, this.y, legalSquares);
+		var nextSquareLegal = checkSquare(newCoord, this.y, legalSquares);
 		if (nextSquareLegal) {
 			this.x  = newCoord;
 		}
 	}
 	if (direction == "right") {
 		var newCoord = this.x + 60;
-		var nextSquareLegal = checkSquare(this, newCoord, this.y, legalSquares);
+		var nextSquareLegal = checkSquare(newCoord, this.y, legalSquares);
 		if (nextSquareLegal) {
 			this.x  = newCoord;
 		}
 	}
 	if (direction == "down") {
 		var newCoord = this.y + 60;
-		var nextSquareLegal = checkSquare(this, this.x, newCoord, legalSquares);
+		var nextSquareLegal = checkSquare(this.x, newCoord, legalSquares);
 		if (nextSquareLegal) {
 			this.y  = newCoord;
 		}
@@ -84,8 +85,8 @@ Player.prototype.move = function (direction) {
 	  	this.dirty = true;
 	  	dirtyRectangle.x = lastX;
 	  	dirtyRectangle.y = lastY;
-	  	dirtyRectangle.width = 40;
-	  	dirtyRectangle.height = 40;
+	  	dirtyRectangle.width = 60;
+	  	dirtyRectangle.height = 60;
 	   }
 
 	   if (this.dirty) {
