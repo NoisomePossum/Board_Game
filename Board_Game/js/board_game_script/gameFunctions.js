@@ -54,19 +54,19 @@ function drawLegalMoves (player) {
 	var context = canvas.getContext("2d");
 
 	context.clearRect(0, 0, 620, 620);
-	context.beginPath();
-
-	
 
 	var legalMoves = getLegalSquares(player.originalX, player.originalY);
 
 	for (var i = 0; i < legalMoves.length; i++) {
+		context.beginPath();
 		context.rect(legalMoves[i].x, legalMoves[i].y, 60, 60);
 		context.closePath();
 		context.stroke();
+		context.strokeStyle = "orange";
+		context.lineWidth = 2;
 		context.shadowBlur = 10;
-		context.shadowColor = "blue";
-		// context.fillStyle = "#D61313";
+		context.shadowColor = "black";
+		// context.fillStyle = "white";
 		// context.fill();
 	}
 }
@@ -77,12 +77,12 @@ function getLegalSquares (x, y) {
 		{"x" : x, "y" : y - 60},
 		{"x" : x, "y" : y - 120},
 		{"x" : x, "y" : y - 180},
-		{"x" : x - 60, "y" : y},
-		{"x" : x - 120, "y" : y},
-		{"x" : x - 180, "y" : y},
 		{"x" : x, "y" : y + 60},
 		{"x" : x, "y" : y + 120},
 		{"x" : x, "y" : y + 180},
+		{"x" : x - 60, "y" : y},
+		{"x" : x - 120, "y" : y},
+		{"x" : x - 180, "y" : y},
 		{"x" : x + 60, "y" : y},
 		{"x" : x + 120, "y" : y},
 		{"x" : x + 180, "y" : y},
