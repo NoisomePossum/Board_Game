@@ -66,8 +66,6 @@ function drawLegalMoves (player) {
 		context.lineWidth = 2;
 		context.shadowBlur = 8;
 		context.shadowColor = "black";
-		// shadowOffsetX = 5;
-		// shadowOffsetY = 5;
 	}
 }
 
@@ -87,14 +85,14 @@ function getLegalSquares (x, y) {
 		{"x" : x + 120, "y" : y},
 		{"x" : x + 180, "y" : y},
 	];
-	
-	for (var i = temp.length - 1; i >= 0; i--) {
+
+	for (var i = temp.length - 1; i >= 1; i--) {
 		console.log("currently checking " + temp[i].x + " " + temp[i].y);
 
 		var match = compareXY(temp[i].x, temp[i].y, gameObstacles);
 		var playerPresent = compareXY(temp[i].x, temp[i].y, players);
 
-		if (match || temp[i].x > 560 || temp[i].x < 0 || temp[i].y > 560 || temp[i].y < 0) {
+		if (match || playerPresent || temp[i].x > 560 || temp[i].x < 0 || temp[i].y > 560 || temp[i].y < 0) {
 			temp.splice(i, 1);
 		}
 	}
