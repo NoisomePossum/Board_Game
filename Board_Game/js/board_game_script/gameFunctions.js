@@ -34,7 +34,7 @@ function setStartPositions(array) {
 	
 	for (var i = 0; i < array.length; i++) {
 		var indexNum = getRandomInt(1, 100);
-		// find another index if it already exists
+		// find another index if current already exists
 		while(isInArray(indexNum, startingIndexes)) {
 			indexNum = getRandomInt(1, 100);
 		}
@@ -64,10 +64,10 @@ function drawLegalMoves (player) {
 		context.stroke();
 		context.strokeStyle = "orange";
 		context.lineWidth = 2;
-		context.shadowBlur = 10;
+		context.shadowBlur = 8;
 		context.shadowColor = "black";
-		// context.fillStyle = "white";
-		// context.fill();
+		// shadowOffsetX = 5;
+		// shadowOffsetY = 5;
 	}
 }
 
@@ -89,6 +89,7 @@ function getLegalSquares (x, y) {
 	];
 
 	for (var i = 0; i < temp.length; i++) {
+		console.log("currently checking " + temp[i].x + " " + temp[i].y);
 
 		var match = compareXY(temp[i].x, temp[i].y, gameObstacles);
 
@@ -96,7 +97,7 @@ function getLegalSquares (x, y) {
 			temp.splice(i, 1);
 		}
 	}
-
+	console.log("check finished");
 	return temp;
 }
 
@@ -135,7 +136,6 @@ function playerTurn () {
 	document.addEventListener("keypress", function(event) {
 	 	if (event.code == "KeyW" || event.code == "ArrowUp"){
 		 	players[currentTurn].move("up");
-		 	
 		 }
 		 if (event.code == "KeyA" || event.code == "ArrowLeft"){
 		 	players[currentTurn].move("left");

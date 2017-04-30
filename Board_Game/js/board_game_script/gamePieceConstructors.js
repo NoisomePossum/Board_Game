@@ -17,6 +17,12 @@ GamePiece.prototype.drawToBoard = function () {
 
 	context.beginPath();
 
+	if (this.shape == "image") {
+		
+		var img = document.getElementById(this.image);
+		context.drawImage(img, 21, 48, 35, 35, this.x + 12, this.y + 12, 35, 35);
+		
+	}
 	if (this.shape == "circle") {
 		context.arc(this.x + 30, this.y + 30, 20, 0, 2 * Math.PI, false);
 	}
@@ -30,11 +36,12 @@ GamePiece.prototype.drawToBoard = function () {
 }
 
 // Object constructor for players
-function Player (style, shape) {
+function Player (style, shape, imgSource) {
 	GamePiece.call(this);
 	this.style = style;
 	this.shape = shape;
 	this.canvas = document.getElementById("playercanvas");
+	this.image = imgSource;
 }
 Player.prototype = Object.create(GamePiece.prototype);
 Player.prototype.constructor = Player;
@@ -58,7 +65,6 @@ Player.prototype.move = function (direction) {
 		if (nextSquareLegal) {
 			this.y  = newCoord;
 		}
-		console.log("does a thing");
 	}
 	if (direction == "left") {
 		var newCoord = this.x - 60;

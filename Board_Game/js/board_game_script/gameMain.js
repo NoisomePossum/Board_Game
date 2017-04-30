@@ -6,8 +6,8 @@ var gridPadding = 10;
 drawBoard(gridWidth, gridHeight, gridPadding);
 
 // Creates instances of all the pieces needed for the game
-var player1 = new Player("#2B26E4", "circle");
-var player2 = new Player("#269B26", "circle");
+var player1 = new Player("#2B26E4", "image", "player1");
+var player2 = new Player("#269B26", "image", "player2");
 
 var obstacle1 = new Obstacle();
 var obstacle2 = new Obstacle();
