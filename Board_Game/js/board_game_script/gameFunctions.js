@@ -87,16 +87,18 @@ function getLegalSquares (x, y) {
 		{"x" : x + 120, "y" : y},
 		{"x" : x + 180, "y" : y},
 	];
-
-	for (var i = 0; i < temp.length; i++) {
+	
+	for (var i = temp.length - 1; i >= 0; i--) {
 		console.log("currently checking " + temp[i].x + " " + temp[i].y);
 
 		var match = compareXY(temp[i].x, temp[i].y, gameObstacles);
+		var playerPresent = compareXY(temp[i].x, temp[i].y, players);
 
 		if (match || temp[i].x > 560 || temp[i].x < 0 || temp[i].y > 560 || temp[i].y < 0) {
 			temp.splice(i, 1);
 		}
 	}
+	
 	console.log("check finished");
 	return temp;
 }
@@ -104,7 +106,7 @@ function getLegalSquares (x, y) {
 function compareXY (compareX, compareY, array) {
 
 	var check = false;
-	for (var i = 0; i < array.length; i++) {
+	for (var i = array.length - 1; i >= 0; i--) {
 		if (compareX == array[i].x && compareY == array[i].y) {
 			check = true;
 		}
