@@ -121,6 +121,16 @@ hr {
   margin-bottom: 4rem;
 }
 
+#clearCanvas {
+  margin-top: 640px;
+  margin-bottom: 10px;
+  font-size: 3rem;
+}
+
+#lifebar1, #lifebar2 {
+  width: 100%;
+}
+
 #navbar {
   text-align: right;
 }

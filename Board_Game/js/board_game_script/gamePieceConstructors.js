@@ -42,6 +42,7 @@ function Player (style, shape, imgSource) {
 	this.shape = shape;
 	this.canvas = document.getElementById("playercanvas");
 	this.image = imgSource;
+	this.weapon = null;
 }
 Player.prototype = Object.create(GamePiece.prototype);
 Player.prototype.constructor = Player;
@@ -111,11 +112,25 @@ Obstacle.prototype = Object.create(GamePiece.prototype);
 Obstacle.prototype.constructor = Obstacle;
 
 // Object constructor for weapons
-function Weapon (style) {
+function Weapon (style, type) {
 	GamePiece.call(this);
 	this.style = style;
 	this.shape = "square";
 	this.canvas = document.getElementById("nonplayerobjects");
+	switch(type) {
+		case "one":
+			this.damage = 15;
+			break;
+		case "two":
+			this.damage = 20;
+			break;
+		case "three":
+			this.damage = 30;
+			break;
+		case "four":
+			this.damage = 60;
+			break;
+	}
 }
 Weapon.prototype = Object.create(GamePiece.prototype);
 Weapon.prototype.constructor = Weapon;
