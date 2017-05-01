@@ -115,7 +115,7 @@ function getEndTurnState (x, y) {
 		var playerPresent = compareXY(temp[i].x, temp[i].y, players);
 
 		if (playerPresent) {
-			alert("fight naow!");
+			startCombat();
 		}
 	}
 }
@@ -178,6 +178,13 @@ function checkForWeapon (x, y) {
 	}
 }
 
+function startCombat () {
+	var modal = document.getElementById("combatWindow");
+	modal.style.display = "block";
+	$('#bun_left').sprite({fps: 12, no_of_frames: 8});
+	$('#bun_right').sprite({fps: 12, no_of_frames: 8});
+}
+
 var currentTurn = 0;
 function playerTurn () {
 
@@ -204,6 +211,7 @@ function playerTurn () {
 		 	if (currentTurn >= players.length) {
 		 		currentTurn = 0;
 		 	}
+		 	document.getElementById("clearCanvas").innerHTML = "<b>Player " + (currentTurn + 1) + "'s turn.</b>";
 		 	drawLegalMoves(players[currentTurn]);
 		 }
 	 });
