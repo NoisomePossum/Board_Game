@@ -71,7 +71,7 @@ function drawLegalMoves (player) {
 
 function getLegalSquares (x, y) {
 	var temp = [
-		{"x" : x, "y" : y},
+		{"x" : x, "y" : y}, // TODO this index might be ok to remove
 		{"x" : x, "y" : y - 60},
 		{"x" : x, "y" : y - 120},
 		{"x" : x, "y" : y - 180},
@@ -87,7 +87,6 @@ function getLegalSquares (x, y) {
 	];
 
 	for (var i = temp.length - 1; i >= 1; i--) {
-		console.log("currently checking " + temp[i].x + " " + temp[i].y);
 
 		var match = compareXY(temp[i].x, temp[i].y, gameObstacles);
 		var playerPresent = compareXY(temp[i].x, temp[i].y, players);
@@ -97,8 +96,28 @@ function getLegalSquares (x, y) {
 		}
 	}
 	
-	console.log("check finished");
 	return temp;
+}
+
+function getEndTurnState (x, y) {
+	var temp = [
+		{"x" : x, "y" : y},
+		{"x" : x, "y" : y - 60},
+		{"x" : x, "y" : y + 60},
+		{"x" : x - 60, "y" : y},
+		{"x" : x + 60, "y" : y},
+	];
+
+	checkForWeapon(x, y);
+
+	for (var i = temp.length - 1; i >= 1; i--) {
+
+		var playerPresent = compareXY(temp[i].x, temp[i].y, players);
+
+		if (playerPresent) {
+			alert("fight naow!");
+		}
+	}
 }
 
 function compareXY (compareX, compareY, array) {
@@ -108,7 +127,6 @@ function compareXY (compareX, compareY, array) {
 		if (compareX == array[i].x && compareY == array[i].y) {
 			check = true;
 		}
-
 	}
 
 	return check;
@@ -126,6 +144,38 @@ function checkSquare (newX, newY, array) {
 	
 	return nextSquare;
 
+}
+
+function checkForWeapon (x, y) {
+
+	var weaponFound;
+	var foundIndex;
+	var canvas = document.getElementById("nonplayerobjects");
+	var context = canvas.getContext("2d");
+
+	for (var i = weapons.length - 1; i >= 0; i--) {
+		if (x == weapons[i].x && y == weapons[i].y) {
+			weaponFound = true;
+			foundIndex = i;
+		}
+	}
+
+	if (weaponFound && players[currentTurn].weapon) {
+		players[currentTurn].previousWeapon = players[currentTurn].weapon;
+	}
+
+	if (weaponFound) {
+		context.clearRect(x, y, 60, 60);
+		players[currentTurn].weapon = weapons[foundIndex];
+		weapons.splice(foundIndex, 1);
+	}
+
+	if (weaponFound && players[currentTurn].previousWeapon) {
+		players[currentTurn].previousWeapon.x = x;
+		players[currentTurn].previousWeapon.y = y;
+		weapons.push(players[currentTurn].previousWeapon);
+		players[currentTurn].previousWeapon.drawToBoard();
+	}
 }
 
 var currentTurn = 0;
@@ -149,6 +199,7 @@ function playerTurn () {
 		 if (event.code == "Enter") {
 		 	players[currentTurn].originalX = players[currentTurn].x;
 		 	players[currentTurn].originalY = players[currentTurn].y;
+		 	getEndTurnState(players[currentTurn].x, players[currentTurn].y);
 		 	currentTurn++;
 		 	if (currentTurn >= players.length) {
 		 		currentTurn = 0;
