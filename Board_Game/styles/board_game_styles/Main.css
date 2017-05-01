@@ -199,20 +199,20 @@ header {
 
 .modal-footer {
     padding: 2px 16px;
-    background-color: #222222;
-    color: white;
+    /*background-color: #222222;*/
+    /*color: white;*/
 }
 
 #bun_left {
-  width: 34px;
+  width: 36px;
   height: 36px;
-  background-image: url("../../images/bunny_blanc.png");
-  background-position: -21px -217px;
+  background-image: url("../../images/bunny_white.png");
+  background-position: 0px -76px;
 }
 
 #bun_right {
-  width: 34px;
+  width: 36px;
   height: 36px;
-  background-image: url("../../images/bunny_marron.png");
-  background-position:  -21px -288px;
+  background-image: url("../../images/bunny_white.png");
+  background-position:  0px -112px;
 }
