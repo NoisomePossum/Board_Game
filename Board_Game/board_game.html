@@ -77,14 +77,12 @@
 		  <!-- Modal content -->
 		  <div class="modal-content">
 		    <div class="modal-header">
-		      <h2>Player 1</h2>
+		      <h2 id="combatHeader"></h2>
 		    </div>
-		    <div class="modal-body">
-		      <div id="bun_left"></div>
-		      <div id="bun_right"></div>
-		    </div>
-		    <div class="modal-footer">
-			<div id="cw-life-container1" class="col-lg-4 col-lg-offset-1"><b>Player 1 Health:</b>
+		    <div class="modal-body row">
+			<div id="cw-life-container1" class="col-lg-4 col-lg-offset-1">
+				<div id="bun_left"></div>
+				<p><b>Player 1 Health:</b></p>
 				<div class="progress">
 					<div id="cw-lifebar1" class="progress-bar-success col-lg-4" role="progressbar" aria-valuenow="70"
 					aria-valuemin="0" aria-valuemax="100">
@@ -92,7 +90,10 @@
 					</div>
 				</div>
 			</div>
-			<div id="cw-life-container2" class="col-lg-4 col-lg-offset-1"><b>Player 1 Health:</b>
+		      
+			<div id="cw-life-container2" class="col-lg-4 col-lg-offset-2">
+				<div id="bun_right"></div>
+				<p><b>Player 2 Health:</b></p>
 				<div class="progress">
 					<div id="cw-lifebar2" class="progress-bar-success col-lg-4" role="progressbar" aria-valuenow="70"
 					aria-valuemin="0" aria-valuemax="100">
@@ -101,10 +102,17 @@
 				</div>
 			</div>
 		    </div>
+		    <div class="modal-footer">
+		    <div class="row">
+		    	<div id="pAttack" class="col-lg-2 col-lg-offset-1"><button type="button" class="btn btn-default btn-block" onclick="playerAttack()">Attack</button></div>
+			<div id="pDefend" class="col-lg-2"><button type="button" class="btn btn-default btn-block">Defend</button></div>
+		    </div>
+		    </div>
 		  </div>
 		</div>
 
-		<div id="clearCanvas"> <b>Player 1's turn.</b> </div>
+		<div id="clearCanvas"></div>
+		<h2 id="uiHeader">Player 1's turn</h2>
 		<div class="row">
 		<div id="life-container1" class="col-lg-3 col-lg-offset-2"><b>Player 1 Health:</b>
 			<div class="progress">

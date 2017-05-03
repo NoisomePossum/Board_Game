@@ -124,6 +124,9 @@ hr {
 #clearCanvas {
   margin-top: 640px;
   margin-bottom: 10px;
+}
+
+#uiHeader {
   font-size: 3rem;
 }
 
@@ -197,10 +200,19 @@ header {
 
 .modal-body {padding: 2px 16px;}
 
+.modal-body > button {
+  margin: 0 10rem;
+}
+
 .modal-footer {
     padding: 2px 16px;
+    text-align: center;
     /*background-color: #222222;*/
     /*color: white;*/
+}
+
+#bun_left, #bun_right {
+  display: inline-block;
 }
 
 #bun_left {

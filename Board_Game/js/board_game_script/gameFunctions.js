@@ -181,8 +181,31 @@ function checkForWeapon (x, y) {
 function startCombat () {
 	var modal = document.getElementById("combatWindow");
 	modal.style.display = "block";
+	document.getElementById("combatHeader").innerHTML = "Player " + (currentTurn + 1) + " Attack";
+	if (currentTurn > 0) {
+		document.getElementById("pAttack").setAttribute("class", "col-lg-2 col-lg-offset-7");
+	}
+	else {
+		document.getElementById("pAttack").setAttribute("class", "col-lg-2 col-lg-offset-1");
+	}
 	$('#bun_left').sprite({fps: 12, no_of_frames: 8});
 	$('#bun_right').sprite({fps: 12, no_of_frames: 8});
+}
+
+function playerAttack () {
+	currentTurn++;
+	console.log(currentTurn);
+	if (currentTurn >= players.length) {
+		currentTurn = 0;
+	}
+	if (currentTurn > 0) {
+		document.getElementById("pAttack").setAttribute("class", "col-lg-2 col-lg-offset-7");
+	}
+	else {
+		document.getElementById("pAttack").setAttribute("class", "col-lg-2 col-lg-offset-1");
+	}
+	
+	document.getElementById("combatHeader").innerHTML = "Player " + (currentTurn+1) + " Attack";
 }
 
 var currentTurn = 0;
@@ -211,7 +234,7 @@ function playerTurn () {
 		 	if (currentTurn >= players.length) {
 		 		currentTurn = 0;
 		 	}
-		 	document.getElementById("clearCanvas").innerHTML = "<b>Player " + (currentTurn + 1) + "'s turn.</b>";
+		 	document.getElementById("uiHeader").innerHTML = "Player " + (currentTurn + 1) + "'s turn.";
 		 	drawLegalMoves(players[currentTurn]);
 		 }
 	 });
