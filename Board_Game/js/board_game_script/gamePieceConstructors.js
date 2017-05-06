@@ -43,6 +43,7 @@ function Player (style, shape, imgSource) {
 	this.canvas = document.getElementById("playercanvas");
 	this.image = imgSource;
 	this.weapon = null;
+	this.health = 100;
 }
 Player.prototype = Object.create(GamePiece.prototype);
 Player.prototype.constructor = Player;
@@ -117,17 +118,18 @@ function Weapon (style, type) {
 	this.style = style;
 	this.shape = "square";
 	this.canvas = document.getElementById("nonplayerobjects");
+	this.type = type;
 	switch(type) {
-		case "one":
+		case "sword":
 			this.damage = 15;
 			break;
-		case "two":
+		case "super-strength potion":
 			this.damage = 20;
 			break;
-		case "three":
+		case "sharp teeth":
 			this.damage = 30;
 			break;
-		case "four":
+		case "holy hand-grenade":
 			this.damage = 60;
 			break;
 	}

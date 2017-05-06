@@ -15,10 +15,10 @@ var obstacle3 = new Obstacle();
 var obstacle4 = new Obstacle();
 var obstacle5 = new Obstacle();
 
-var weapon1 = new Weapon("#B65CA8", "one");
-var weapon2 = new Weapon("#78FF6A", "two");
-var weapon3 = new Weapon("#FFEC18", "three");
-var weapon4 = new Weapon("#76FFE4", "four");
+var weapon1 = new Weapon("#B65CA8", "sword");
+var weapon2 = new Weapon("#78FF6A", "super-strength potion");
+var weapon3 = new Weapon("#FFEC18", "sharp teeth");
+var weapon4 = new Weapon("#76FFE4", "holy hand-grenade");
 
 // Creates arrays for each object type
 var players = [];
