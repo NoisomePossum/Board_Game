@@ -15,31 +15,27 @@ GamePiece.prototype.drawToBoard = function () {
 		this.dirty = false;
 	}
 
-	context.beginPath();
+	// context.beginPath();
 
-	if (this.shape == "image") {
-		
-		var img = document.getElementById(this.image);
+	var img = document.getElementById(this.image);
+
+	if (this.type == "player") {
 		context.drawImage(img, 21, 48, 35, 35, this.x + 12, this.y + 12, 35, 35);
-		
 	}
-	if (this.shape == "circle") {
-		context.arc(this.x + 30, this.y + 30, 20, 0, 2 * Math.PI, false);
+	else if (this.type == "fence") {
+		context.drawImage(img, this.x, this.y);
 	}
-	if (this.shape == "square") {
-		context.rect(this.x + 10, this.y + 10, 40, 40);
+	else {
+		context.drawImage(img, this.x + 10, this.y + 10);
 	}
 	
-	context.closePath();
-	context.fillStyle = this.style;
-	context.fill();
+	// context.closePath();
 }
 
 // Object constructor for players
-function Player (style, shape, imgSource) {
+function Player (imgSource) {
 	GamePiece.call(this);
-	this.style = style;
-	this.shape = shape;
+	this.type = "player";
 	this.canvas = document.getElementById("playercanvas");
 	this.image = imgSource;
 	this.weapon = null;
@@ -105,29 +101,28 @@ Player.prototype.move = function (direction) {
 // Object constructor for obstacles
 function Obstacle () {
 	GamePiece.call(this);
-	this.style = "#000000";
-	this.shape = "square";
+	this.type = "fence";
+	this.image = "picket_fence";
 	this.canvas = document.getElementById("nonplayerobjects");
 }
 Obstacle.prototype = Object.create(GamePiece.prototype);
 Obstacle.prototype.constructor = Obstacle;
 
 // Object constructor for weapons
-function Weapon (style, type) {
+function Weapon (imgSource, type) {
 	GamePiece.call(this);
-	this.style = style;
-	this.shape = "square";
 	this.canvas = document.getElementById("nonplayerobjects");
 	this.type = type;
+	this.image = imgSource;
 	switch(type) {
 		case "sword":
-			this.damage = 15;
-			break;
-		case "super-strength potion":
 			this.damage = 20;
 			break;
-		case "sharp teeth":
+		case "super-strength potion":
 			this.damage = 30;
+			break;
+		case "magic hat":
+			this.damage = 40;
 			break;
 		case "holy hand-grenade":
 			this.damage = 60;

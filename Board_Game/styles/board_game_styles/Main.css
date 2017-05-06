@@ -223,3 +223,28 @@ header {
   background-image: url("../../images/bunny_white.png");
   background-position:  0px -112px;
 }
+
+#p1WeaponImage, #p2WeaponImage {
+  width: 60px;
+  height: 60px;
+}
+
+.sword {
+  background-repeat: no-repeat;
+  background-image: url("../../images/Sword.png");
+}
+
+.super_strength_potion {
+  background-repeat: no-repeat;
+  background-image: url("../../images/StrengthPotion.png");
+}
+
+.magic_hat {
+  background-repeat: no-repeat;
+  background-image: url("../../images/MagicianHat.png");
+}
+
+.holy_hand_grenade {
+  background-repeat: no-repeat;
+  background-image: url("../../images/HolyHandGrenade.png");
+}

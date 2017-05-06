@@ -171,9 +171,11 @@ function checkForWeapon (x, y) {
 		weapons.splice(foundIndex, 1);
 		if (currentTurn == 0) {
 			document.getElementById("p1Weapon").innerHTML = players[currentTurn].weapon.type;
+			document.getElementById("p1WeaponImage").setAttribute("class", players[currentTurn].weapon.image);
 		}
 		if (currentTurn > 0) {
 			document.getElementById("p2Weapon").innerHTML = players[currentTurn].weapon.type;
+			document.getElementById("p2WeaponImage").setAttribute("class", players[currentTurn].weapon.image);
 		}
 	}
 
