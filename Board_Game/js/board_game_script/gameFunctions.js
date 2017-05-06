@@ -186,7 +186,6 @@ function checkForWeapon (x, y) {
 }
 
 function startCombat () {
-	console.log("current turn at start of combat is " + currentTurn);
 	var modal = document.getElementById("combatWindow");
 	modal.style.display = "block";
 	document.getElementById("combatHeader").innerHTML = "Player " + (currentTurn + 1) + " Attack";
@@ -196,44 +195,83 @@ function startCombat () {
 	else {
 		document.getElementById("pAttack").setAttribute("class", "col-lg-2 col-lg-offset-1");
 	}
-	console.log("current turn after setting buttons is " + currentTurn);
 	$('#bun_left').sprite({fps: 12, no_of_frames: 8});
 	$('#bun_right').sprite({fps: 12, no_of_frames: 8});
 }
 
 function playerAttack () {
-	console.log("current turn upon clicking attack is " + currentTurn);
+	var attacker = players[currentTurn];
+	var defender;
+	var damage;
+	var defense;
+
 	players[currentTurn].combatStatus = "attacking";
-	console.log(currentTurn + players[currentTurn].combatStatus);
 	currentTurn++;
-	console.log("current turn after incrementing is " + currentTurn);
 	if (currentTurn >= players.length) {
 		currentTurn = 0;
 	}
 
-	players[currentTurn].health -= 10;
+	// sets a variable for the player being attacked
+	defender = players[currentTurn];
+
+	if (attacker.weapon) {
+		damage = attacker.weapon.damage;
+	}
+	else {
+		damage = 10;
+	}
+
+	if (defender.combatStatus == "defending") {
+		defense = damage / 2;
+	}
+	else {
+		defense = 0;
+	}
+
+	defender.health -= (damage - defense);
 
 	// if next turn is player 2's turn
 	if (currentTurn > 0 && currentTurn < players.length) {
-		document.getElementById("lifebar2").setAttribute("aria-valuenow", players[currentTurn].health);
-		document.getElementById("lifebar2").innerHTML = players[currentTurn].health + "/100";
-		document.getElementById("lifebar2").style.width = players[currentTurn].health + "%";
-		document.getElementById("cw-lifebar2").setAttribute("aria-valuenow", players[currentTurn].health);
-		document.getElementById("cw-lifebar2").innerHTML = players[currentTurn].health + "/100";
-		document.getElementById("cw-lifebar2").style.width = players[currentTurn].health + "%";
+		document.getElementById("lifebar2").setAttribute("aria-valuenow", defender.health);
+		document.getElementById("lifebar2").innerHTML = defender.health + "/100";
+		document.getElementById("lifebar2").style.width = defender.health + "%";
+		document.getElementById("cw-lifebar2").setAttribute("aria-valuenow", defender.health);
+		document.getElementById("cw-lifebar2").innerHTML = defender.health + "/100";
+		document.getElementById("cw-lifebar2").style.width = defender.health + "%";
 
 		// move attack and defend buttons to the new player's side
 		document.getElementById("pAttack").setAttribute("class", "col-lg-2 col-lg-offset-7");
 	}
 	// if next turn is player 1's turn
 	else {
-		document.getElementById("lifebar1").setAttribute("aria-valuenow", players[currentTurn].health);
-		document.getElementById("lifebar1").innerHTML = players[currentTurn].health + "/100";
-		document.getElementById("lifebar1").style.width = players[currentTurn].health + "%";
-		document.getElementById("cw-lifebar1").setAttribute("aria-valuenow", players[currentTurn].health);
-		document.getElementById("cw-lifebar1").innerHTML = players[currentTurn].health + "/100";
-		document.getElementById("cw-lifebar1").style.width = players[currentTurn].health + "%";
+		document.getElementById("lifebar1").setAttribute("aria-valuenow", defender.health);
+		document.getElementById("lifebar1").innerHTML = defender.health + "/100";
+		document.getElementById("lifebar1").style.width = defender.health + "%";
+		document.getElementById("cw-lifebar1").setAttribute("aria-valuenow", defender.health);
+		document.getElementById("cw-lifebar1").innerHTML = defender.health + "/100";
+		document.getElementById("cw-lifebar1").style.width = defender.health + "%";
 
+		// move attack and defend buttons to the new player's side
+		document.getElementById("pAttack").setAttribute("class", "col-lg-2 col-lg-offset-1");
+	}
+	
+	document.getElementById("combatHeader").innerHTML = "Player " + (currentTurn+1) + " Attack";
+}
+
+function playerDefend () {
+	players[currentTurn].combatStatus = "defending";
+	currentTurn++;
+	if (currentTurn >= players.length) {
+		currentTurn = 0;
+	}
+
+	// if next turn is player 2's turn
+	if (currentTurn > 0 && currentTurn < players.length) {
+		// move attack and defend buttons to the new player's side
+		document.getElementById("pAttack").setAttribute("class", "col-lg-2 col-lg-offset-7");
+	}
+	// if next turn is player 1's turn
+	else {
 		// move attack and defend buttons to the new player's side
 		document.getElementById("pAttack").setAttribute("class", "col-lg-2 col-lg-offset-1");
 	}
