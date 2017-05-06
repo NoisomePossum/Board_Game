@@ -195,12 +195,13 @@ function startCombat () {
 	else {
 		document.getElementById("pAttack").setAttribute("class", "col-lg-2 col-lg-offset-1");
 	}
-	$('#bun_left').sprite({fps: 12, no_of_frames: 8});
-	$('#bun_right').sprite({fps: 12, no_of_frames: 8});
+	$("#bun_left").sprite({fps: 12, no_of_frames: 8});
+	$("#bun_right").sprite({fps: 12, no_of_frames: 8});
 }
 
 function playerAttack () {
 	var attacker = players[currentTurn];
+	var attackingPlayerNumber = (currentTurn + 1);
 	var defender;
 	var damage;
 	var defense;
@@ -230,6 +231,14 @@ function playerAttack () {
 
 	defender.health -= (damage - defense);
 
+	if (defender.health <= 0) {
+		// creates a variable to identify the winner of the game
+		var winner = attackingPlayerNumber;
+		// end the game passing attacking player as parameter
+		endGame(winner);
+		return;
+	}
+
 	// if next turn is player 2's turn
 	if (currentTurn > 0 && currentTurn < players.length) {
 		document.getElementById("lifebar2").setAttribute("aria-valuenow", defender.health);
@@ -256,6 +265,7 @@ function playerAttack () {
 	}
 	
 	document.getElementById("combatHeader").innerHTML = "Player " + (currentTurn+1) + " Attack";
+
 }
 
 function playerDefend () {
@@ -277,6 +287,28 @@ function playerDefend () {
 	}
 	
 	document.getElementById("combatHeader").innerHTML = "Player " + (currentTurn+1) + " Attack";
+}
+
+function endGame (winner) {
+
+	var img;
+
+	if (winner == 1) {
+		img = "bun_left";
+	}
+	else {
+		img = "bun_right";
+	}
+
+	document.getElementById("BoardGameApp").innerHTML = 
+	"<div id=\"" + img + "\"></div>\n" +
+	"<div><h2>Player " + winner + " wins!</h2></div>\n" +
+	"<button id=\"restartGame\" class=\"btn btn-default\" onclick=\"window.location.reload()\">Play again</button>";
+
+	$("#" + img).sprite({fps: 12, no_of_frames: 8});
+
+	document.getElementById("BoardGameApp").setAttribute("class", "centeredDisplay");
+
 }
 
 var currentTurn = 0;

@@ -1,12 +1,3 @@
-
-/* remove later */
-.starter-template {
-
-    text-align: center;
-
-}
-
-
 @-ms-viewport{
     width: extend-to-zoom;
     zoom: 1.0;
@@ -126,7 +117,8 @@ hr {
   margin-bottom: 10px;
 }
 
-#uiHeader {
+#uiHeader, #combatHeader {
+  text-align: center;
   font-size: 3rem;
 }
 
@@ -150,6 +142,9 @@ header {
   background: #222222;
 }
 
+.centeredDisplay {
+  text-align: center;
+}
 
 /* The Modal containing "combat" window */
 .modal {
