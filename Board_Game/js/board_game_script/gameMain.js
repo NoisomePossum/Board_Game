@@ -43,3 +43,5 @@ setStartPositions(gameObstacles);
 setStartPositions(weapons);
 
 playerTurn();
+$("#bun_left").sprite({fps: 12, no_of_frames: 8});
+$("#bun_right").sprite({fps: 12, no_of_frames: 8});

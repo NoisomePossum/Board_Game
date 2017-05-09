@@ -197,8 +197,6 @@ function startCombat () {
 	else {
 		document.getElementById("pAttack").setAttribute("class", "col-lg-2 col-lg-offset-1");
 	}
-	$("#bun_left").sprite({fps: 12, no_of_frames: 8});
-	$("#bun_right").sprite({fps: 12, no_of_frames: 8});
 }
 
 function playerAttack () {
@@ -207,6 +205,7 @@ function playerAttack () {
 	var defender;
 	var damage;
 	var defense;
+	var endCombat = false;
 
 	players[currentTurn].combatStatus = "attacking";
 	currentTurn++;
@@ -226,6 +225,8 @@ function playerAttack () {
 
 	if (defender.combatStatus == "defending") {
 		defense = damage / 2;
+		endCombat = true;
+		players[currentTurn].combatStatus = "attacking";
 	}
 	else {
 		defense = 0;
@@ -239,6 +240,11 @@ function playerAttack () {
 		// end the game passing attacking player as parameter
 		endGame(winner);
 		return;
+	}
+
+	if (endCombat) {
+		document.getElementById("combatWindow").style.display = "none";
+		playerTurn();
 	}
 
 	// if next turn is player 2's turn
@@ -318,7 +324,7 @@ function playerTurn () {
 
 	drawLegalMoves(players[currentTurn]);
 
-	document.addEventListener("keypress", function(event) {
+	document.addEventListener("keypress", function getPlayerInput (event) {
 	 	if (event.code == "KeyW" || event.code == "ArrowUp"){
 		 	players[currentTurn].move("up");
 		 }
@@ -336,6 +342,7 @@ function playerTurn () {
 		 	players[currentTurn].originalY = players[currentTurn].y;
 		 	var fighting = getEndTurnState(players[currentTurn].x, players[currentTurn].y);
 		 	if (fighting) {
+		 		document.removeEventListener("keypress", getPlayerInput);
 		 		return;
 		 	}
 		 	currentTurn++;
