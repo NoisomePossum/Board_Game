@@ -249,6 +249,8 @@ function playerAttack () {
 
 	// if next turn is player 2's turn
 	if (currentTurn > 0 && currentTurn < players.length) {
+		document.getElementById("p1damage-taken").innerHTML = "";
+		document.getElementById("p2damage-taken").innerHTML = "Player 2 took " + (damage - defense) + " damage.";
 		document.getElementById("lifebar2").setAttribute("aria-valuenow", defender.health);
 		document.getElementById("lifebar2").innerHTML = defender.health + "/100";
 		document.getElementById("lifebar2").style.width = defender.health + "%";
@@ -261,6 +263,8 @@ function playerAttack () {
 	}
 	// if next turn is player 1's turn
 	else {
+		document.getElementById("p2damage-taken").innerHTML = "";
+		document.getElementById("p1damage-taken").innerHTML = "Player 1 took " + (damage - defense) + " damage.";
 		document.getElementById("lifebar1").setAttribute("aria-valuenow", defender.health);
 		document.getElementById("lifebar1").innerHTML = defender.health + "/100";
 		document.getElementById("lifebar1").style.width = defender.health + "%";
