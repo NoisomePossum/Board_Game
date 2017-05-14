@@ -10,6 +10,7 @@ GamePiece.prototype.drawToBoard = function () {
 	var canvas = this.canvas;
 	var context = canvas.getContext("2d");
 
+	// erases the object's image before we draw it to its new position
 	if (this.dirty) {
 		context.clearRect(dirtyRectangle.x, dirtyRectangle.y, dirtyRectangle.width, dirtyRectangle.height);
 		this.dirty = false;
@@ -18,7 +19,7 @@ GamePiece.prototype.drawToBoard = function () {
 	var img = document.getElementById(this.image);
 
 	if (this.type == "player") {
-		context.drawImage(img, 0, 0, 35, 35, this.x + 15, this.y + 12, 35, 35);
+		context.drawImage(img, 0, 0, 35, 35, this.x + 14, this.y + 12, 35, 35);
 	}
 	else if (this.type == "fence") {
 		context.drawImage(img, this.x, this.y);
@@ -37,6 +38,7 @@ function Player (imgSource) {
 	this.weapon = null;
 	this.health = 100;
 }
+// sets the player object as a subtype of GamePiece
 Player.prototype = Object.create(GamePiece.prototype);
 Player.prototype.constructor = Player;
 
@@ -47,6 +49,7 @@ var dirtyRectangle = {
 	height: ""
 };
 
+// player move function
 Player.prototype.move = function (direction) {
 	var lastX = this.x;
 	var lastY = this.y;
@@ -101,6 +104,7 @@ function Obstacle () {
 	this.image = "picket_fence";
 	this.canvas = document.getElementById("nonplayerobjects");
 }
+// sets the obstacle object as a subtype of GamePiece
 Obstacle.prototype = Object.create(GamePiece.prototype);
 Obstacle.prototype.constructor = Obstacle;
 
@@ -125,5 +129,6 @@ function Weapon (imgSource, type) {
 			break;
 	}
 }
+// sets the weapon object as a subtype of GamePiece
 Weapon.prototype = Object.create(GamePiece.prototype);
 Weapon.prototype.constructor = Weapon;
