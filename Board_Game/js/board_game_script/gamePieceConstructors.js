@@ -15,12 +15,10 @@ GamePiece.prototype.drawToBoard = function () {
 		this.dirty = false;
 	}
 
-	// context.beginPath();
-
 	var img = document.getElementById(this.image);
 
 	if (this.type == "player") {
-		context.drawImage(img, 21, 48, 35, 35, this.x + 12, this.y + 12, 35, 35);
+		context.drawImage(img, 0, 0, 35, 35, this.x + 15, this.y + 12, 35, 35);
 	}
 	else if (this.type == "fence") {
 		context.drawImage(img, this.x, this.y);
@@ -28,8 +26,6 @@ GamePiece.prototype.drawToBoard = function () {
 	else {
 		context.drawImage(img, this.x + 10, this.y + 10);
 	}
-	
-	// context.closePath();
 }
 
 // Object constructor for players
