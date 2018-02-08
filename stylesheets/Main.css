@@ -1,0 +1,195 @@
+@-ms-viewport{
+    width: extend-to-zoom;
+    zoom: 1.0;
+}
+
+html, body {
+   font-family: 'Gudea', sans-serif;
+   background: #E4E4E4;
+}
+
+p {
+  line-height: 100%;
+}
+
+#containermain {
+   min-height:100%;
+}
+
+hr {
+  margin-bottom: 1.25rem;
+}
+
+/******************************
+  Begin bootstrap mods
+*******************************/
+
+.container {
+  padding-bottom: 1px;
+}
+
+#BoardGameApp {
+  position: relative;
+  display: block;
+  margin: auto;
+  margin-bottom: 4rem;
+  height: 620px;
+}
+
+#BoardGameApp > canvas {
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
+#gridcanvas {
+  background: #fff;
+  display: block;
+  margin: auto;
+  margin-bottom: 4rem;
+}
+
+#clearCanvas {
+  margin-top: 640px;
+  margin-bottom: 10px;
+}
+
+#uiHeader, #combatHeader {
+  text-align: center;
+  font-size: 3rem;
+}
+
+#lifebar1, #lifebar2, #cw-lifebar1, #cw-lifebar2 {
+  width: 100%;
+}
+
+#p1Weapon, #p2Weapon {
+  margin-top: 5px;
+  font-style: italic;
+}
+
+#navbar {
+  text-align: right;
+}
+
+header {
+  color: blue;
+  background: #222222;
+}
+
+.footer {
+  margin-top: 30px;
+  height: 40px;
+  text-align: center;
+  /*color: #9D9D9D;*/
+  /*background: #222222;*/
+}
+
+.centeredDisplay {
+  text-align: center;
+}
+
+/* The Modal containing "combat" window */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: #222222;
+    color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-body > button {
+  margin: 0 10rem;
+}
+
+.modal-footer {
+    padding: 2px 16px;
+    text-align: center;
+    /*background-color: #222222;*/
+    /*color: white;*/
+}
+
+#bun_left, #bun_right {
+  display: inline-block;
+}
+
+#bun_left {
+  width: 36px;
+  height: 36px;
+  background-image: url("../images/bunny_white.png");
+  background-position: 0px -76px;
+}
+
+#bun_right {
+  width: 36px;
+  height: 36px;
+  background-image: url("../images/bunny_brown.png");
+  background-position:  0px -112px;
+}
+
+#p1WeaponImage, #p2WeaponImage {
+  width: 60px;
+  height: 60px;
+}
+
+.sword {
+  background-repeat: no-repeat;
+  background-image: url("../images/Sword.png");
+}
+
+.super_strength_potion {
+  background-repeat: no-repeat;
+  background-image: url("../images/StrengthPotion.png");
+}
+
+.magic_hat {
+  background-repeat: no-repeat;
+  background-image: url("../images/MagicianHat.png");
+}
+
+.holy_hand_grenade {
+  background-repeat: no-repeat;
+  background-image: url("../images/HolyHandGrenade.png");
+}
